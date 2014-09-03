@@ -1,0 +1,3 @@
+Apache Public License 2.0, (c) OpenSensors Ltd.
+
+Based on MQTT arduino plugin from: http://knolleary.net/arduino-client-for-mqtt/.
