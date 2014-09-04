@@ -29,7 +29,7 @@ EthernetClient ethernetClient;                        // Standart arduino ethern
 
 // MQTT worker instance. As a parameters we pass server, port, 
 // "data received" callback and instance of EthernetClient.
-PubSubClient mqttClient(server, port, callback, ethernetClient);
+MQTTClient mqttClient(server, port, callback, ethernetClient);
 
 void setup()
 {

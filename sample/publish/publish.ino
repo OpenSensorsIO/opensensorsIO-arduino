@@ -1,5 +1,3 @@
-#include <mqtt.h>
-
 /*
  * Insertion to test publish for topic.
  * Command line to listen test message: mosquitto_sub -i asqv8fs0moo0kv7mknev9 -u yods -P device-2-pwd -t yods/device1/sensor1"
@@ -27,7 +25,7 @@ boolean takeLowTime;                                  // Need to save time of tr
 
 // MQTT worker instance. As a parameters we pass server, port, 
 // "data received" callback and instance of EthernetClient.
-PubSubClient mqttClient(server, port, callback, ethernetClient);
+MQTTClient mqttClient(server, port, callback, ethernetClient);
 
 void setup()
 {

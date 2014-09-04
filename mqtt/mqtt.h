@@ -35,7 +35,7 @@
 #define MQTTQOS1        (1 << 1)
 #define MQTTQOS2        (2 << 1)
 
-class PubSubClient 
+class MQTTClient 
 {
 private:
    Client* _client;
@@ -53,9 +53,9 @@ private:
    char* domain;
    uint16_t port;
 public:
-   PubSubClient(Client& client);
-   PubSubClient(uint8_t *, uint16_t, void(*)(char*,uint8_t*,unsigned int),Client& client);
-   PubSubClient(char*, uint16_t, void(*)(char*,uint8_t*,unsigned int),Client& client);
+   MQTTClient(Client& client);
+   MQTTClient(uint8_t *, uint16_t, void(*)(char*,uint8_t*,unsigned int),Client& client);
+   MQTTClient(char*, uint16_t, void(*)(char*,uint8_t*,unsigned int),Client& client);
    boolean connect(char *);
    boolean connect(char *, char *, char *);
    boolean connect(char *, char *, uint8_t, uint8_t, char *);
