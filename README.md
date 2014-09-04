@@ -1,19 +1,31 @@
-# MQTT plugin for "Arduino" IDE
+# Arduino Client for OpenSensors
 
-This library gives ability to communicate with server via MQTT protocol to **Arduino** network shields. API consists of set of methods to connect to the server, subscribe for topic and publish to topic. Original code taken from [here](http://knolleary.net/arduino-client-for-mqtt/). Currently only class and files were renamed.
+This is an OpenSensors client for Arduino boards with Ethernet or WiFi connectivity. It uses MQTT v3.1 and is based
+on the [Arduino MQTT client](http://knolleary.net/arduino-client-for-mqtt/) by Nick O'Leary (MIT licensed).
 
 ## Hardware prerequisites
 
-You need any arduino shield which has network interface (cable or WIFI). In my case I used combination of [Arduino UNO](http://arduino.cc/en/Main/arduinoBoardUno) and [Arduino ethernet shield without PoE](http://store.arduino.cc/product/A000072). But this variant cn be replaces by [single shield](http://arduino.cc/en/Main/ArduinoEthernetShield). Also [data cable](http://www.adafruit.com/products/62) is necessary for programming shield. It's in any arduino shield box usually.
+You need an an Arduino board which has network interface (Ethernet wire or WiFi), for example, an [Arduino UNO](http://arduino.cc/en/Main/arduinoBoardUno) and [Arduino ethernet shield without PoE](http://store.arduino.cc/product/A000072), or a [single Arduino shield](http://arduino.cc/en/Main/ArduinoEthernetShield).
 
 ## Software prerequisites
 
-To develop arduino programs, connect and use MQTT plugin you need [Arduino IDE](http://arduino.cc/en/main/software), downloaded for your OS.
+[Arduino IDE](http://arduino.cc/en/main/software), the most convenient way to develop Arduino software.
 
-## Using MQTT plugin
+## Using the Library
 
-Before you can use plugin you must to import it in your Arduino IDE. Plugins importing as zip archives. Therefore you need to add to zip archive files which placed in [plugin folder](https://github.com/OpenSensorsIO/opensensorsIO-arduino/tree/master/mqtt). Next select: "Sketch -> Import library -> Add library" in your IDE and point to created mqtt.zip archive. After it restart your IDE. You need go to "Sketch -> Import library" and select "mqtt" from dropdown list to include plugin to your arduino program. Or you can do it manually by typing **#include <mqtt.h>**.
+First import the library in Arduino IDE as a zip archive. Therefore you need
+to add to the zip archive files from the [mqtt directory](./mqtt).
 
-## Explore samples
+The use "Sketch -> Import library -> Add library" in the IDE menu and point to created mqtt.zip archive
+and restart the IDE. 
 
-Some samples of using MQTT arduino plugin you can found [here](https://github.com/OpenSensorsIO/opensensorsIO-arduino/tree/master/sample).
+Then navigate to "Sketch -> Import library" and select "mqtt" from the dropdown list to add
+the library to your Arduino program. Or you can do it in the code with
+
+``` c
+#include <mqtt.h>
+```
+
+## Code Examples
+
+Some examples can be found in the [sample directory](./sample).
