@@ -25,7 +25,7 @@ void setup()
   
   if (Ethernet.begin(mac) != 0)
   {
-    // Here we connect without server name ("opensensors.oi" used by default).
+    // Here we connect without server name ("opensensors.io" used by default).
     if (osioClient.connect("gizz", "80", "EFxXoD2m")) 
     {
       Serial.println("Connected to opensensors.io.");
