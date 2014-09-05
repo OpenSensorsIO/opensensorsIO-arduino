@@ -1,6 +1,7 @@
 #include <SPI.h>
-#include <Ethernet.h>
-#include <osio_client.h>
+#include <Ethernet.h>        // In this sample we use wired ethernet library.
+#include <PubSubClient.h>    // Include library that supports mqtt protocol.
+#include <osio_client.h>     // Include client library for OpenSensors.
 
 byte mac[] = { 0x90, 0xA2, 0xDA, 0x0E, 0xF3, 0xDF };  // MAC address of my "Arduino ethernet" shield.
 long unsigned int lowIn;                              // The time when the sensor outputs a low impulse.
@@ -8,11 +9,20 @@ long unsigned int pause = 2000;                       // The amount of milliseco
 boolean lockLow = true;                               // Current state is "no motion".
 boolean takeLowTime;                                  // Need to save time of transition from HIGH to LOW.
 
-OSIOClient osioClient;
+// Wired ethernet client.
+EthernetClient ethernetClient;
+
+// Instance of client library class.
+// Client (wired or wireless), user name, device ID, device password should be supplied.
+// There are two optional parameters: callback (we need it is planning to read messages from topic),
+// server name (opensensors.io by default).
+// In this sample don't need to supply callback and use default server name.
+OSIOClient osioClient(ethernetClient, "gizz", "80", "EFxXoD2m");
 
 void setup()
 {
-  pinMode(3, INPUT);  // We connect infrared motion sensor on this pin and will read signal from it.
+  // We connect infrared motion sensor on this pin and will read signal from it.
+  pinMode(3, INPUT);
   
   Serial.begin(9600);
   Serial.println("Initializing...");
@@ -30,17 +40,6 @@ void setup()
   {
     Serial.println("DHCP error.");
   }
-  else
-  {
-    if (osioClient.connect("opensensors.io", "gizz", "80", "EFxXoD2m")) 
-    {
-      Serial.println("Connected to opensensors.io.");
-    }
-    else 
-    {
-      Serial.println("Cannot connect to opensensors.io.");
-    }
-  }  
 }
 
 void loop()
@@ -57,15 +56,19 @@ void loop()
       memset(message, 0, 255);
       memset(time, 0, 50);
       
-      if (osioClient.connected())
+      Serial.println("motion...");
+      strcpy(message, "Motion detected at ");
+      itoa(millis() / 1000, time, 10);
+      strcat(message, time);
+      strcat(message, " seconds from arduino startup.");
+      if (osioClient.publish("/users/gizz/test", message))
       {
-        Serial.println("motion...");
-        strcpy(message, "Motion detected at ");
-        itoa(millis() / 1000, time, 10);
-        strcat(message, time);
-        strcat(message, " seconds from arduino startup.");
-        osioClient.publish("/users/gizz/test", message);
+        Serial.println("Begin motion: message published.");
       }
+      else
+      {
+        Serial.println("Begin motion: error publishing message.");
+      }  
       
       delay(50);
     }
@@ -84,14 +87,19 @@ void loop()
     {  
       lockLow = true;                        
       
-      if (osioClient.connected())
+      strcpy(message, "Motion ended at ");
+      itoa((millis() - pause) / 1000, time, 10);
+      strcat(message, time);
+      strcat(message, " seconds from arduino startup.");
+      
+      if (osioClient.publish("/users/gizz/test", message))
       {
-        strcpy(message, "Motion ended at ");
-        itoa((millis() - pause) / 1000, time, 10);
-        strcat(message, time);
-        strcat(message, " seconds from arduino startup.");
-        osioClient.publish("/users/gizz/test", message);
+        Serial.println("Stop motion: message published.");
       }
+      else
+      {
+        Serial.println("Stop motion: error publishing message.");
+      }  
 
       delay(50);
     }

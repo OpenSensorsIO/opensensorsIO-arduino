@@ -1,7 +1,9 @@
 #include <SPI.h>
-#include <Ethernet.h>
-#include <osio_client.h>
+#include <Ethernet.h>        // In this sample we use wired ethernet library.
+#include <PubSubClient.h>    // Include library that supports mqtt protocol.
+#include <osio_client.h>     // Include client library for OpenSensors.
 
+// Callback for working with received messages.
 void callback(char* topic, byte* payload, unsigned int length) 
 {
   char* clearMessage = new char[length + 1];
@@ -14,26 +16,33 @@ void callback(char* topic, byte* payload, unsigned int length)
   Serial.println(clearMessage);
 }
 
-byte mac[] = { 0x90, 0xA2, 0xDA, 0x0E, 0xF3, 0xDF };  
-OSIOClient osioClient;
+// MAC of arduino ethernet shield.
+byte mac[] = { 0x90, 0xA2, 0xDA, 0x0E, 0xF3, 0xDF };
+
+// Wired ethernet client.
+EthernetClient ethernetClient;
+
+// Instance of client library class.
+// Client (wired or wireless), user name, device ID, device password should be supplied.
+// There are two optional parameters: callback (we need it is planning to read messages from topic),
+// server name (opensensors.io by default).
+// In this sample we supply callback and use default server name.
+OSIOClient osioClient(ethernetClient, "gizz", "80", "EFxXoD2m", callback);
 
 void setup()
 {
-  delay(5000); 
   Serial.begin(9600);
   Serial.println("Initializing...");
   
   if (Ethernet.begin(mac) != 0)
   {
-    // Here we connect without server name ("opensensors.io" used by default).
-    if (osioClient.connect("gizz", "80", "EFxXoD2m")) 
+    if (osioClient.subscribe("/users/gizz/test")) 
     {
-      Serial.println("Connected to opensensors.io.");
-      osioClient.subscribe("/users/gizz/test", callback);
+      Serial.println("Subscribed for topic on the 'opensensors.io' server.");
     }
     else 
     {
-      Serial.println("Cannot connect to opensensors.io.");
+      Serial.println("Could not subscribe for topic.");
     }
   } 
   else
@@ -44,8 +53,5 @@ void setup()
 
 void loop()
 {
-  if (osioClient.connected())
-  {
-    osioClient.loop();
-  }
+  osioClient.loop();
 }
