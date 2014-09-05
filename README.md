@@ -30,43 +30,43 @@ the library to your Arduino program. Or you can do it in the code with
 
 This client library realized as C++ class named **OSIOClient**. There are such public methods to work with it:
 
-1. Method to check if client connected to server:
+Method to check if client connected to server:
 
 ``` c
 boolean OSIOClient::connected();
 ```
 
-2. Method to connect to the server with default name (opensensors.io):
+Method to connect to the server with default name (opensensors.io):
 
 ``` c
 boolean OSIOClient::connect(char * userName, char * deviceId, char * devicePassword);
 ```
 
-3. Method to connect to the server with ability to supply server name:
+Method to connect to the server with ability to supply server name:
 
 ``` c
 boolean OSIOClient::connect(char * serverName, char * userName, char * deviceId, char * devicePassword);
 ```
 
-4. Method to disconnect from the server:
+Method to disconnect from the server:
 
 ``` c
 void OSIOClient::disconnect();
 ```
 
-5. Method to process iteration of receiving data (callback supplied in "subscribe" method called here):
+Method to process iteration of receiving data (callback supplied in "subscribe" method called here):
 
 ``` c
 boolean OSIOClient::loop();
 ```
 
-6. Method to publish message to topic:
+Method to publish message to topic:
 
 ``` c
 boolean OSIOClient::publish(char* topic, char* payload);
 ```
 
-7. Method to subscribe for topic:
+Method to subscribe for topic:
 
 ``` c
 boolean OSIOClient::subscribe(char* topic, void (*callback)(char*,uint8_t*,unsigned int));
