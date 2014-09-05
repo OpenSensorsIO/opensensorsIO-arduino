@@ -15,12 +15,10 @@ class OSIOClient
 {
 private:
   PubSubClient * _mqttClient;
-  Client * _client;
-  char * _serverName;
   char * _userName;
   char * _deviceId;
   char * _devicePassword;
-  boolean authenticatedInServer;
+  boolean _authenticatedInServer;
   boolean connectIfNecessary();
   void initialize(Client & client, char * userName, char * deviceId, char * devicePassword, char * serverName, void (*callback)(char*,uint8_t*,unsigned int));
 public:

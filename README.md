@@ -1,6 +1,6 @@
 # Arduino Client for OpenSensors
 
-This is an OpenSensors client for Arduino boards with Ethernet or WiFi connectivity. It uses MQTT v3.1 and using the [Arduino MQTT client](http://knolleary.net/arduino-client-for-mqtt/) by Nick O'Leary (MIT licensed).
+This is an OpenSensors client for Arduino boards with Ethernet or WiFi connectivity. It uses MQTT v3.1 and the [Arduino MQTT client](http://knolleary.net/arduino-client-for-mqtt/) by Nick O'Leary (MIT licensed).
 
 ## Hardware prerequisites
 
@@ -15,9 +15,9 @@ You need an Arduino board which has network interface (Ethernet wire or WiFi), f
 First import the Arduino MQTT client in Arduino IDE as a zip archive. Use "Sketch -> Import library -> Add library" in the IDE menu and point to pubsubclient.zip archive placed [here](./pubsubclient) and restart the IDE. 
  
 Second import the client library for OpenSensors (it using previously imported library) in Arduino IDE as a zip archive. Therefore you need
-to add to the zip archive files from the [mqtt directory](./osio_client).
+to add to the zip archive files from the [osio_client directory](./osio_client).
 
-Use "Sketch -> Import library -> Add library" in the IDE menu and point to created mqtt.zip archive
+Use "Sketch -> Import library -> Add library" in the IDE menu and point to created osio_client.zip archive
 and restart the IDE. 
 
 Then navigate to "Sketch -> Import library" and select "pubsubclient" and then "osio_client" from the dropdown list to add

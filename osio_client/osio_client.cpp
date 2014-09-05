@@ -27,7 +27,7 @@ void OSIOClient::initialize(Client & client, char * userName, char * deviceId, c
   this->_userName = userName;
   this->_deviceId = deviceId;
   this->_devicePassword = devicePassword;
-  this->authenticatedInServer = false;
+  this->_authenticatedInServer = false;
 }
 
 OSIOClient::~OSIOClient()
@@ -38,13 +38,13 @@ OSIOClient::~OSIOClient()
 
 boolean OSIOClient::connectIfNecessary()
 {
-  if (this->_mqttClient->connected() && this->authenticatedInServer)
+  if (this->_mqttClient->connected() && this->_authenticatedInServer)
   {
     return true;
   }
 
   boolean result = this->_mqttClient->connect(this->_deviceId, this->_userName, this->_devicePassword);
-  this->authenticatedInServer = result;
+  this->_authenticatedInServer = result;
   return result;
 }
 
