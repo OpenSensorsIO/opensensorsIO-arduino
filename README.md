@@ -12,13 +12,15 @@ You need an Arduino board which has network interface (Ethernet wire or WiFi), f
 
 ## Using the Library
 
-First import the Arduino MQTT client in Arduino IDE as a zip archive. Use "Sketch -> Import library -> Add library" in the IDE menu and point to pubsubclient.zip archive placed [here](./pubsubclient) and restart the IDE. 
- 
-Second import the client library for OpenSensors (it using previously imported library) in Arduino IDE as a zip archive. Therefore you need
+First, download the binary [OpenSensors client library](https://github.com/OpenSensorsIO/opensensorsIO-arduino/raw/master/pubsubclient/pubsubclient.zip) and save the file.
+
+Next import the Arduino MQTT client in Arduino IDE as a zip archive. Use "Sketch -> Import library -> Add library" in the IDE menu and point to pubsubclient.zip archive you just downloaded and restart the IDE.
+
+Now import the client library for OpenSensors (it using previously imported library) in Arduino IDE as a zip archive. Therefore you need
 to add to the zip archive files from the [osio_client directory](./osio_client).
 
 Use "Sketch -> Import library -> Add library" in the IDE menu and point to created osio_client.zip archive
-and restart the IDE. 
+and restart the IDE.
 
 Then navigate to "Sketch -> Import library" and select "pubsubclient" and then "osio_client" from the dropdown list to add
 the libraries to your Arduino program. Or you can do it in the code with
