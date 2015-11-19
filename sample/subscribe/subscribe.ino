@@ -25,7 +25,7 @@ EthernetClient ethernetClient;
 // Instance of client library class.
 // Client (wired or wireless), user name, device ID, device password should be supplied.
 // There are two optional parameters: callback (we need it is planning to read messages from topic),
-// server name (opensensors.io by default).
+// server name (mqtt.opensensors.io by default).
 // In this sample we supply callback and use default server name.
 OSIOClient osioClient(ethernetClient, "gizz", "80", "EFxXoD2m", callback);
 
@@ -38,7 +38,7 @@ void setup()
   {
     if (osioClient.subscribe("/users/gizz/test")) 
     {
-      Serial.println("Subscribed for topic on the 'opensensors.io' server.");
+      Serial.println("Subscribed for topic on the 'mqtt.opensensors.io' server.");
     }
     else 
     {

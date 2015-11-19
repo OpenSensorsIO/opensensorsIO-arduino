@@ -5,11 +5,11 @@
 #include "Client.h"
 #include "PubSubClient.h"
 
-// Default MQTT port
+// Default MQTT port - Use port 8883 for TLS secure messaging
 #define MQTT_PORT 1883
 
 // Default server name
-#define OSIO_SERVERNAME "opensensors.io"
+#define OSIO_SERVERNAME "mqtt.opensensors.io"
 
 class OSIOClient 
 {
