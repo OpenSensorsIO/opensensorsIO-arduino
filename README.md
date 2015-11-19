@@ -1,29 +1,28 @@
 # Arduino Client for OpenSensors
 
-This is an OpenSensors client for Arduino boards with Ethernet or WiFi connectivity. It uses MQTT v3.1 and the [Arduino MQTT client](http://knolleary.net/arduino-client-for-mqtt/) by Nick O'Leary (MIT licensed).
+This is the OpenSensors client for Arduino boards with Ethernet or WiFi connectivity. It uses MQTT v3.1 and the [Arduino MQTT client](http://knolleary.net/arduino-client-for-mqtt/) by Nick O'Leary (MIT licensed) as a dependency.
 
 ## Hardware prerequisites
 
-You need an Arduino board which has network interface (Ethernet wire or WiFi), for example, an [Arduino UNO](http://arduino.cc/en/Main/arduinoBoardUno) and [Arduino ethernet shield without PoE](http://store.arduino.cc/product/A000072), or a [single Arduino shield](http://arduino.cc/en/Main/ArduinoEthernetShield).
+You need an Arduino board with a network interface (Ethernet wire or WiFi), for example, an [Arduino UNO](http://arduino.cc/en/Main/arduinoBoardUno) and [Arduino ethernet shield without PoE](http://store.arduino.cc/product/A000072), or a [single Arduino shield](http://arduino.cc/en/Main/ArduinoEthernetShield).
 
 ## Software prerequisites
 
-[Arduino IDE](http://arduino.cc/en/main/software), the most convenient way to develop Arduino software.
+[Arduino IDE](http://arduino.cc/en/main/software) or another IDE, Codebender.cc etc.
 
 ## Using the Library
 
-First, download the binary [OpenSensors client library](https://github.com/OpenSensorsIO/opensensorsIO-arduino/raw/master/pubsubclient/pubsubclient.zip) and save the file.
+1. Download the [Arduino MQTT client](http://knolleary.net/arduino-client-for-mqtt/) dependency, created by Nick O'Leary from [here](https://github.com/OpenSensorsIO/opensensorsIO-arduino/blob/master/bin/pubsubclient.zip).
 
-Next import the Arduino MQTT client in Arduino IDE as a zip archive. Use "Sketch -> Import library -> Add library" in the IDE menu and point to pubsubclient.zip archive you just downloaded and restart the IDE.
+2. Import the Arduino MQTT client file you just downloaded into the Arduino IDE. To do this we go to the Arduino IDE toolbar, go to Sketch -> Import Library -> Add library and add PubSubClient.zip
 
-Now import the client library for OpenSensors (it using previously imported library) in Arduino IDE as a zip archive. Therefore you need
-to add to the zip archive files from the [osio_client directory](./osio_client).
+3. Restart the Arduino IDE
 
-Use "Sketch -> Import library -> Add library" in the IDE menu and point to created osio_client.zip archive
-and restart the IDE.
+4. Download the OpenSensors Arduino Client from [here](https://github.com/OpenSensorsIO/opensensorsIO-arduino/blob/master/bin/osio_client.zip).
 
-Then navigate to "Sketch -> Import library" and select "pubsubclient" and then "osio_client" from the dropdown list to add
-the libraries to your Arduino program. Or you can do it in the code with
+5. Import the OpenSensors Arduino Client into the Arduino IDE, mirroring step 2, add osio_client.zip
+
+6. To implement in your sketch, you will need to now add the library to your sketch. Navigate to Sketch -> Import library, select pubsubclient and then osio_client from the drop down list. Alternatively, type:
 
 ``` c
 #include <pubsubclient.h>
